@@ -1,0 +1,17 @@
+{
+    "name": "cblink\/cps-sdk",
+    "description": "Package description here.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "eleven",
+            "email": "eleven@cblink.net"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Cblink\\CpsSdk\\": "src"
+        }
+    }
+}
