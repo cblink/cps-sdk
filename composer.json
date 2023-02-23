@@ -8,10 +8,18 @@
             "email": "eleven@cblink.net"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.5"
+    },
     "autoload": {
         "psr-4": {
             "Cblink\\CpsSdk\\": "src"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "mockery/mockery": "^1.5"
     }
 }
