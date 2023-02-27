@@ -1,9 +1,9 @@
 <?php
-namespace Cblink\CpsSdk\Service;
+namespace Cblink\CpsSdk\Client;
 
-use Cblink\CpsSdk\BaseApiService;
+use Cblink\CpsSdk\BaseApiClient;
 
-class PddDdkService extends BaseApiService
+class PddDdkApiClient extends BaseApiClient
 {
     /*******************推广位备案相关*********************/
     /**

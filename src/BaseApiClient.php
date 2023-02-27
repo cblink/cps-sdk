@@ -3,7 +3,7 @@ namespace Cblink\CpsSdk;
 
 use GuzzleHttp\Client;
 
-class BaseApiService
+class BaseApiClient
 {
     public $config;
 
