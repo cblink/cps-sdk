@@ -13,7 +13,7 @@ class PddDdkApiClient extends BaseApiClient
      *
      * @param array $params
      *
-     * @return $this
+     * @return array
      */
     public function goodsPidQuery(array $params = [])
     {
@@ -27,7 +27,7 @@ class PddDdkApiClient extends BaseApiClient
      * @param       $mediaId
      * @param array $pidList
      *
-     * @return mixed|null
+     * @return array
      */
     public function pidMediaIdBind($mediaId, array $pidList)
     {
@@ -45,7 +45,7 @@ class PddDdkApiClient extends BaseApiClient
      * @param $number
      * @param array $params
      *
-     * @return mixed
+     * @return array
      */
     public function goodsPidGenerate($number, array $params = [])
     {
@@ -62,7 +62,7 @@ class PddDdkApiClient extends BaseApiClient
      * @param $pid
      * @param array $params
      *
-     * @return $this
+     * @return array
      */
     public function memberAuthorityQuery($pid, array $params = [])
     {
@@ -79,7 +79,7 @@ class PddDdkApiClient extends BaseApiClient
      *
      * @param array $params
      *
-     * @return $this
+     * @return array
      */
     public function goodsSearch(array $params = [])
     {
@@ -93,7 +93,7 @@ class PddDdkApiClient extends BaseApiClient
      *
      * @param array $params
      *
-     * @return $this
+     * @return array
      */
     public function goodsRecommendGet(array $params = [])
     {
@@ -107,7 +107,7 @@ class PddDdkApiClient extends BaseApiClient
      *
      * @param array $params
      *
-     * @return $this
+     * @return array
      */
     public function goodsDetail(array $params = [])
     {
@@ -124,7 +124,7 @@ class PddDdkApiClient extends BaseApiClient
      * @param $sourceUrl
      * @param array $params
      *
-     * @return mixed
+     * @return array
      */
     public function goodsZsUnitUrlGen($pid, $sourceUrl, array $params = [])
     {
@@ -142,7 +142,7 @@ class PddDdkApiClient extends BaseApiClient
      * @param       $pid
      * @param array $params
      *
-     * @return mixed|null
+     * @return array
      */
     public function goodsPromotionUrlGenerate($pid, array $params = [])
     {
@@ -159,7 +159,7 @@ class PddDdkApiClient extends BaseApiClient
      * @param       $pidList
      * @param array $params
      *
-     * @return mixed|null
+     * @return array
      */
     public function rpPromUrlGenerate($pidList, array $params = [])
     {
@@ -176,7 +176,7 @@ class PddDdkApiClient extends BaseApiClient
      * @param       $pidList
      * @param array $params
      *
-     * @return mixed|null
+     * @return array
      */
     public function cmsPromUrlGenerate($pidList, array $params = [])
     {
@@ -195,7 +195,7 @@ class PddDdkApiClient extends BaseApiClient
      * @param       $endUpdateTime
      * @param array $params
      *
-     * @return mixed|null
+     * @return array
      */
     public function orderListIncrementGet($startUpdateTime, $endUpdateTime, array $params = [])
     {
@@ -214,7 +214,7 @@ class PddDdkApiClient extends BaseApiClient
      * @param       $endTime
      * @param array $params
      *
-     * @return mixed|null
+     * @return array
      */
     public function orderListRangeGet($startTime, $endTime, array $params = [])
     {
@@ -232,7 +232,7 @@ class PddDdkApiClient extends BaseApiClient
      * @param       $orderSn
      * @param array $params
      *
-     * @return mixed|null
+     * @return array
      */
     public function orderDetailGet($orderSn, array $params = [])
     {
@@ -257,6 +257,12 @@ class PddDdkApiClient extends BaseApiClient
         ];
     }
 
+    /**
+     * @param $method
+     * @param $params
+     *
+     * @return array
+     */
     public function request($method, $params = [])
     {
         $response = parent::request($method, $params);
