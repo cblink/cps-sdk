@@ -242,6 +242,16 @@ class PddDdkApiClient extends BaseApiClient
     }
 
     /**
+     * 开通消息订阅
+     *
+     * @return array
+     */
+    public function pmcUserPermit()
+    {
+        return $this->request('pdd.pmc.user.permit');
+    }
+
+    /**
      * 获取公共参数
      *
      * @param $method
