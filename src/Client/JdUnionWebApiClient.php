@@ -26,7 +26,7 @@ class JdUnionWebApiClient extends BaseApiClient
         preg_match('/\d+/', $path, $matches);
         $materialId = $matches[0];
 
-        $params = [
+        return $this->request('unionPromoteLinkService',[
             'funName' => 'getCode',
             'param' => array_merge([
                 'isPinGou' => 0,
@@ -37,8 +37,17 @@ class JdUnionWebApiClient extends BaseApiClient
                 'promotionTypeId' => $promotionTypeId,
                 'receiveType' => 'cps',
             ], $params),
-        ];
-        return $this->request('unionPromoteLinkService',$params);
+        ]);
+    }
+
+    public function searchGoods($keyword, $params = [])
+    {
+        return $this->request('unionSearch',[
+            'funName' => 'search',
+            'param' => array_merge([
+                'keyWord' => $keyword,
+            ], $params),
+        ]);
     }
 
     /**
