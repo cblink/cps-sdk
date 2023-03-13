@@ -17,8 +17,34 @@ class TbkWebApiClient extends BaseApiClient
      */
     public function getShortLink(string $promotionId, string $url)
     {
-        return $this->request($promotionId,[
-            'url' => $url,
+        return $this->request('xt.entry.json',[
+            'refpid' => $promotionId,
+            'variableMap' => json_encode([
+                'url' => $url,
+            ])
+        ]);
+    }
+
+    /**
+     * 查询订单列表
+     *
+     * @param string $startTime 开始时间 Y-m-d
+     * @param string $endTime   结束时间 Y-m-d
+     * @param        $queryType 1:按照创建时间查询，2:按照订单付款时间查询。3:按照订单结算时间查询
+     * @param        $pageNo    页码
+     * @param        $pageSize  每页条数
+     *
+     * @return array
+     */
+    public function getOrderList(string $startTime, string $endTime, $queryType = 1, $pageNo = 1, $pageSize = 20)
+    {
+        return $this->request('report.getTbkOrderDetails.json', [
+            'startTime' => $startTime,
+            'endTime' => $endTime,
+            'queryType' => $queryType,
+            'jumpType' => 0,
+            'pageNo' => $pageNo,
+            'pageSize' => $pageSize,
         ]);
     }
 
@@ -33,7 +59,6 @@ class TbkWebApiClient extends BaseApiClient
     {
         return [
             'floorId' => '61446',
-            'refpid' => $method,
         ];
     }
 
@@ -57,9 +82,9 @@ class TbkWebApiClient extends BaseApiClient
         $client = new Client();
 
         //转换为url参数
-        $urlParams = http_build_query($this->getPublicParams($method) + ['variableMap' => json_encode($params)]);
+        $urlParams = http_build_query($this->getPublicParams($method) + $params);
 
-        $response = $client->get($this->getUri() . '?' . $urlParams, [
+        $response = $client->get($this->getUri() . $method . '?' . $urlParams, [
             'headers' => [
                 'Cookie' => $this->getCookies(),
             ],

@@ -40,6 +40,14 @@ class JdUnionWebApiClient extends BaseApiClient
         ]);
     }
 
+    /**
+     * 查询商品
+     *
+     * @param $keyword 商品名或商品id
+     * @param $params
+     *
+     * @return array
+     */
     public function searchGoods($keyword, $params = [])
     {
         return $this->request('unionSearch',[
@@ -47,6 +55,37 @@ class JdUnionWebApiClient extends BaseApiClient
             'param' => array_merge([
                 'keyWord' => $keyword,
             ], $params),
+        ]);
+    }
+
+    /**
+     * 查询订单列表
+     *
+     * @param $startTime 开始时间 Y-m-d H:i:s
+     * @param $endTime  结束时间 Y-m-d H:i:s
+     * @param $spId 推广位id
+     * @param $pageNo 页码
+     * @param $pageSize 每页条数
+     *
+     * @return array
+     */
+    public function getOrderList($startTime, $endTime, $spId = '', $pageNo = 1, $pageSize = 20)
+    {
+        return $this->request('listOrderSku',[
+            'funName' => 'listOrderSku',
+            'page' => [
+                'pageNo' => $pageNo,
+                'pageSize' => $pageSize,
+            ],
+            'param' => array_merge([
+                'unionRole' => 1,
+                'endTime' => $endTime,
+                'orderStatus' => 0,
+                'unionTags' => ["0"],
+                'startTime' => $startTime,
+                'optType' => 1,
+                'spId' => $spId,
+            ]),
         ]);
     }
 
@@ -87,6 +126,7 @@ class JdUnionWebApiClient extends BaseApiClient
 
         //转换为url参数
         $urlParams = http_build_query($this->getPublicParams($method) + ['body' => json_encode($params)]);
+
         $response = $client->get($this->getUri() . '?' . $urlParams, [
             'headers' => [
                 'origin' => 'https://union.jd.com',
