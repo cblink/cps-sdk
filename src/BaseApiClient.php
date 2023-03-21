@@ -50,7 +50,7 @@ class BaseApiClient
                 $stringToBeSigned .= "$k$v";
             }
         }
-        unset($k, $v);
+
         $stringToBeSigned .= $this->getAppSecret();
         return strtoupper(md5($stringToBeSigned));
     }
