@@ -69,6 +69,37 @@ class MeituanApiClient extends BaseApiClient
     }
 
     /**
+     * 美团订单列表查询
+     * @param $startTime int 时间戳
+     * @param $endTime int 时间戳 开始和结束时间不能超过1天的时间戳
+     * @param $actId integer 活动id
+     * @param $businessLine int 与businessLine二者至少择其一 业务线
+     * @param $page int 分页参数，起始值从1开始
+     * @param $limit string 每页显示数据条数，最大值为100
+     * @param $params array 额外参数
+     */
+    public function orderList($startTime, $endTime, $actId = 0, $businessLine = 0, $page = 1, $limit = 20, array $params = array())
+    {
+        $query = [
+            'startTime' => $startTime,
+            'endTime' => $endTime,
+            'page' => $page,
+            'limit' => $limit,
+            'ts' => time(),
+        ];
+
+        if($actId){ // 与businessLine二者至少择其一
+            $query['actId'] = $actId;
+        }
+
+        if($businessLine){ // 与actId二者至少择其一
+            $query['businessLine'] = $businessLine;
+        }
+
+        return $this->request('orderList', array_merge($query, $params));
+    }
+
+    /**
      * @param $method
      * @param $params
      *
